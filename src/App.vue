@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="schema">
-      <jsplumb-schema-builder id="mySchema" url="schema-1.json"></jsplumb-schema-builder>
+      <jsplumb-schema-builder id="mySchema"></jsplumb-schema-builder>
     </div>
     <div id="rhs">
       <jsplumb-schema-builder-palette schemaId="mySchema"></jsplumb-schema-builder-palette>
@@ -22,8 +22,10 @@
 
 export default {
   name: 'app',
-  methods:{
-
+  mounted:function() {
+    // on mount, load a schema and zoom to fit the whole dataset. 
+    // You can also load a url via a `url` attribute on the `jsplumb-schema-builder` element.
+    this.$refs.schema.loadUrl("schema-1.json", () => this.$refs.schema.zoomToFit())
   }
 }
 </script>
